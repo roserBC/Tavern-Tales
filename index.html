@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tavern tales</title>
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+        <main class="login-shell">
+          <section class="login-card" aria-label="Formulari de login">
+            <!-- Logo: posa el teu fitxer a /assets/logo.png -->
+            <img class="logo" src="assets/logoTavernTales_Blue.png" alt="Logo de la pàgina" />
+      
+            <form id="loginForm" class="form">
+              <div class="field">
+                <span class="icon" aria-hidden="true">
+                  <!-- Icona usuari (inline SVG) -->
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                    <path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M4 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <input id="user" type="text" placeholder="Nom d'usuari" autocomplete="username" />
+              </div>
+      
+              <div class="field">
+                <span class="icon" aria-hidden="true">
+                  <!-- Icona candau (inline SVG) -->
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                    <path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 10h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 14v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <input id="pass" type="password" placeholder="Contrasenya" autocomplete="current-password" />
+              </div>
+      
+              <button class="btn" type="submit">Entra a la taverna</button>
+      
+              <a class="forgot" href="#" onclick="return false;">Has oblidat la contrasenya?</a>
+            </form>
+          </section>
+        </main>
+      
+        <script src="js/audio.js"></script>
+        <script src="js/login.js"></script>
+      </body>
+      </html>

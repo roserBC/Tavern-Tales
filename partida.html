@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tavern Tales - Partida</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/partida.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="home.html" aria-label="Anar a Home">
+        <img src="assets/logoTavernTales_Blue.png" alt="Logo" class="brand-logo">
+      </a>
+
+      <nav class="nav" aria-label="Navegació principal">
+        <a class="nav-link" href="com-funciona.html">Com funciona</a>
+        <a class="nav-link" href="#" id="navNewGame">Nova partida</a>
+        <a class="nav-link" href="credits.html">Crèdits i procés</a>
+      </nav>
+
+      <button class="logout" id="logoutBtn" type="button" aria-label="Tancar sessió">
+        <img src="assets/logout.svg" alt="" class="logout-icon">
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="game-top">
+      <!-- Fila 1 -->
+      <div class="game-head">
+        <h2 id="gameTitle" class="h2"></h2>
+        <div class="game-meta">
+          <span id="gameSystem" class="pill"></span>
+          <span id="gameGM" class="pill"></span>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="game-body">
+        <div id="gameFull" class="game-full"></div>
+
+        <div class="game-right">
+          <img id="gameImage" class="game-image" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2a fila: jugadors -->
+    <section class="block">
+      <div class="block-head">
+        <h3 class="h3">Jugadors</h3>
+        <button id="addPlayerBtn" class="btn btn-ghost" type="button">+ Afegir jugador</button>
+      </div>
+      <div id="playersGrid" class="players-grid"></div>
+    </section>
+
+    <!-- Música -->
+    <section class="block">
+      <div class="block-head">
+        <h3 class="h3">Música de la partida</h3>
+      </div>
+
+      <div class="music-box">
+        <div class="music-left">
+          <div class="row">
+            <label for="folderSelect">Carpeta</label>
+            <select id="folderSelect"></select>
+          </div>
+
+          <div id="tracksList" class="tracks"></div>
+        </div>
+
+        <div class="music-right">
+          <div class="player-controls">
+            <div id="nowPlaying" class="muted">Ara sona: —</div>
+
+            <div class="controls-row">
+              <button id="playBtn" class="btn btn-ghost" type="button">Play</button>
+              <button id="pauseBtn" class="btn btn-ghost" type="button">Pausa</button>
+              <button id="muteBtn" class="btn" type="button">Mute</button>
+            </div>
+
+            <div class="row">
+              <label for="vol">Volum</label>
+              <input id="vol" type="range" min="0" max="1" step="0.01">
+            </div>
+          </div>
+
+          <div id="gmMusic" class="gm-music" hidden>
+            <h4 class="h3">Gestió (GM)</h4>
+
+            <div class="row">
+              <label for="newFolder">Nova carpeta</label>
+              <div class="inline">
+                <input id="newFolder" placeholder="Ex: Suspens">
+                <button id="addFolderBtn" class="btn btn-ghost" type="button">Crear</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Afegir cançó a la carpeta</label>
+              <input id="trackTitle" placeholder="Títol">
+              <input id="trackUrl" placeholder="URL o ruta (assets/music/xxx.mp3)">
+              <button id="addTrackBtn" class="btn" type="button">Afegir cançó</button>
+              <div class="muted">Consell: posa els mp3 a <code>assets/music/</code>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="gameAudio" preload="auto"></audio>
+    </section>
+
+    <!-- IA simulada -->
+    <section class="block">
+      <h3 class="h3">Generador d’idees (IA simulada)</h3>
+
+      <div class="ai-controls">
+        <textarea id="aiContext" placeholder="Escriu el context / idea base..."></textarea>
+
+        <div class="ai-options">
+          <label><input type="checkbox" value="one-shot"> One-shot</label>
+          <label><input type="checkbox" value="idees"> Idees</label>
+          <label><input type="checkbox" value="revisio"> Revisió</label>
+          <label><input type="checkbox" value="suggerencies"> Suggerències</label>
+        </div>
+
+        <button id="aiBtn" class="btn">Generar</button>
+      </div>
+
+      <div class="ai-output">
+        <div class="muted">Resposta</div>
+        <div id="aiAnswer" class="answer"></div>
+      </div>
+    </section>
+
+    <!-- Comentaris -->
+    <section class="block">
+      <h3 class="h3">Comentaris</h3>
+
+      <form id="commentForm" class="comment-form" method="post">
+        <textarea id="commentText" placeholder="Escriu un comentari..."></textarea>
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+
+      <div id="commentsList" class="comments"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> - Tots els drets de Tavern Tales reservats</span>
+      <span class="footer-right">Fet amb ❤️</span>
+    </div>
+  </footer>
+
+  <!-- ✅ MODAL: Afegir jugador/personatge -->
+  <dialog id="playerDialog">
+    <form class="modal" method="dialog" id="playerForm">
+      <h3 class="h3">Afegir jugador</h3>
+      <p class="muted">Pots triar un personatge existent o crear-ne un de nou.</p>
+
+      <div class="row">
+        <label for="existingCharacter">Personatge existent</label>
+        <select id="existingCharacter">
+          <option value="">— Crear nou personatge —</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="playerNameInput">Nom del jugador</label>
+        <input id="playerNameInput" placeholder="Ex: Roser">
+      </div>
+
+      <div class="row">
+        <label for="characterNameInput">Nom del personatge</label>
+        <input id="characterNameInput" placeholder="Ex: Elric">
+      </div>
+
+      <div class="row">
+        <label for="levelInput">Nivell</label>
+        <input id="levelInput" type="number" min="1" value="1">
+      </div>
+
+      <div class="row">
+        <label for="avatarInput">Imatge (ruta o URL)</label>
+        <input id="avatarInput" placeholder="Ex: assets/chars/elric.png">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" value="cancel">Cancel·lar</button>
+        <button class="btn" id="savePlayerBtn" value="default">Afegir</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/partida.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tavern Tales - Home</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:wght@400;500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <!-- Logo (clic a Home) -->
+      <a class="brand" href="home.html" aria-label="Anar a Home">
+        <img src="assets/logoTavernTales_Blue.png" alt="Logo" class="brand-logo">
+      </a>
+
+      <nav class="nav" aria-label="Navegació principal">
+        <a class="nav-link" href="com-funciona.html">Com funciona</a>
+        <!-- ✅ ara obre el mateix modal que "+ Nova targeta" -->
+        <a class="nav-link" href="#" id="navNewGame">Nova partida</a>
+        <a class="nav-link" href="credits.html">Crèdits i procés</a>
+      </nav>
+
+      <!-- Logout (icona imatge) -->
+      <button class="logout" id="logoutBtn" type="button" aria-label="Tancar sessió">
+        <img src="assets/logout.svg" alt="" class="logout-icon">
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO (imatge sota menú + títol al mig) -->
+  <section class="hero" aria-label="Capçalera de la pàgina">
+    <img class="hero-img" src="assets/home_img.jpg" alt="" />
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">Tavern Tales</h1>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="section-head">
+      <h2 class="h2">Partides</h2>
+      <div class="actions">
+        <button id="addBtn" class="btn">+ Nova partida</button>
+        <button id="resetBtn" class="btn btn-ghost" title="Restableix les targetes de mostra">Reset</button>
+      </div>
+    </div>
+
+    <!-- Graella 3x1 -->
+    <section id="cardsGrid" class="grid" aria-label="Llista de partides"></section>
+
+    <!-- Dialog: afegir targeta -->
+    <dialog id="addDialog" class="dialog">
+      <form id="addForm" method="dialog" class="dialog-form">
+        <h3 class="h3">Nova partida</h3>
+
+        <label for="tTitle">Títol</label>
+        <input id="tTitle" required placeholder="Nom de la partida">
+
+        <label for="tTag">Sistema</label>
+        <input id="tTag" placeholder="Ex: D&D, Anima...">
+
+        <label for="tShort">Descripció curta</label>
+        <textarea id="tShort" rows="3" placeholder="Resum curt"></textarea>
+
+        <label for="tFull">Descripció completa</label>
+        <textarea id="tFull" rows="4" placeholder="Informació completa"></textarea>
+
+        <label for="tImage">Imatge (ruta/URL)</label>
+        <input id="tImage" placeholder="assets/xxx.png">
+
+        <label class="checkbox">
+          <input id="tCanAddPlayer" type="checkbox" checked>
+          Permetre "Afegir jugador"
+        </label>
+
+        <div class="dialog-actions">
+          <button id="cancelBtn" class="btn btn-ghost" type="button">Cancel·lar</button>
+          <button class="btn" type="submit">Crear</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> - Tots els drets de Tavern Tales reservats</span>
+      <span class="footer-right">Fet amb ❤️</span>
+    </div>
+  </footer>
+
+  <script src="js/audio.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/global-nav.js"></script>
+</body>
+</html>
